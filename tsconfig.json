@@ -17,7 +17,11 @@
       "app/api-gateway": ["api-gateway/src"],
       "app/api-gateway/*": ["api-gateway/src/*"],
       "base/model": ["model/src"],
-      "base/model/*": ["model/src/*"]
+      "base/model/*": ["model/src/*"],
+      "base/common": ["common/src"],
+      "base/common/*": ["common/src/*"],
+      "base/core": ["core/src"],
+      "base/core/*": ["core/src/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "types": [
       "reflect-metadata",
@@ -28,7 +32,7 @@
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+    "noImplicitAny": false /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "compileOnSave": true

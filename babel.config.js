@@ -12,6 +12,8 @@ module.exports = {
           '^#(.+)': './src/\\1',
           'app/api-gateway': '../dist/api-gateway/src',
           'base/model': '../dist/model/src',
+          'base/common': '../dist/common/src',
+          'base/core': '../dist/core/src',
         },
         extensions: ['.ts', '.js', '.json'],
       },

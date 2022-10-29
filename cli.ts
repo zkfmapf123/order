@@ -38,6 +38,7 @@ const init = async () => {
 
     fs.mkdirSync(write)
     fs.mkdirSync(`${write}/src`)
+    fs.mkdirSync(`${write}/__test__`)
     fs.writeFileSync(
       `${write}/tsconfig.app.json`,
       `{

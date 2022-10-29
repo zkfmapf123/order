@@ -14,7 +14,11 @@ class OrderConfig {
     }
   }
 
-  getTokenConfig() {}
+  getTokenConfig() {
+    return {
+      jwtSecret: process.env.JWT_SECRET,
+    }
+  }
 }
 
 export const orderConfig = new OrderConfig()

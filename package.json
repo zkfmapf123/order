@@ -9,7 +9,8 @@
     "build-model": "babel model --out-dir dist/model --extensions \".ts\" --source-maps inline",
     "build-common": "babel common --out-dir dist/common --extensions \".ts\" --source-maps inline",
     "build-core": "babel core --out-dir dist/core --extensions \".ts\" --source-maps inline",
-    "build": "rm -rf dist && npm run build-api-gateway && npm run build-model && npm run build-common && npm run build-core",
+    "build-auth": "babel auth --out-dir dist/auth --extensions \".ts\" --source-maps inline",
+    "build": "rm -rf dist && npm run build-api-gateway && npm run build-model && npm run build-common && npm run build-core && npm run build-auth",
     "start": "npm run build && node ./dist/api-gateway/src/index.js",
     "prisma": "npx prisma migrate dev --name create_categories",
     "cli": "ts-node cli.ts"

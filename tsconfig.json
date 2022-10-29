@@ -21,7 +21,9 @@
       "base/common": ["common/src"],
       "base/common/*": ["common/src/*"],
       "base/core": ["core/src"],
-      "base/core/*": ["core/src/*"]
+      "base/core/*": ["core/src/*"],
+      "app/auth": ["auth/src"],
+      "app/auth/*": ["auth/src/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     "types": [
       "reflect-metadata",

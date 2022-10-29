@@ -11,6 +11,7 @@ module.exports = {
         alias: {
           '^#(.+)': './src/\\1',
           'app/api-gateway': '../dist/api-gateway/src',
+          'app/auth': '../dist/auth/src',
           'base/model': '../dist/model/src',
           'base/common': '../dist/common/src',
           'base/core': '../dist/core/src',

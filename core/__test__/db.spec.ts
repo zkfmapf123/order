@@ -1,10 +1,8 @@
-import { DatabaseManager } from '../src/database'
+import { mysqlManager } from '../src/database'
 
 describe('db connect test', () => {
   it('db : invalid query test', async () => {
-    const db = DatabaseManager.setting('mysql')
-
-    const result = await db.execute({
+    const result = await mysqlManager.execute({
       query: 'select * fromd shops',
     })
 
@@ -12,9 +10,7 @@ describe('db connect test', () => {
   })
 
   it('db valid query test', async () => {
-    const db = DatabaseManager.setting('mysql')
-
-    const result = await db.execute({
+    const result = await mysqlManager.execute({
       query: 'select * from shops',
     })
 

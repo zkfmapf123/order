@@ -1,21 +1,24 @@
-# Order
+# 주문관리 시스템
 
-# Folder
+## 그냥 MicroService 연습 겸
 
-- api-gateway
-- auth
-- notification
-- model
-- common
-- repository
+## Tech
 
-- users
-- owner
-- order
+- Express
+- fxts
+- prisma + sql Query
+- joi
 
-# File 적용
+## Implemnetation
 
-- 파일 등록
+- [x] 인증
+- [ ] 사장님
+- [ ] 고객
+- [ ] 배달 기사님
+- [ ] 주문 관리
+- [ ] 배달 관리
+
+## File Register
 
 ```
     npm run cli

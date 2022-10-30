@@ -1,47 +1,24 @@
+import * as redis from 'redis'
 import mysql from 'mysql2/promise'
-import { orderConfig } from './config'
+import { configManager } from './config'
 import _ from 'lodash'
 import { Logger } from './logger'
 import { failed, passed, Try } from './Try'
 import { QueryProfiler } from './profiler'
-
-type ConnectParams = {
-  [t in 'host' | 'user' | 'password' | 'database']: string
-}
 
 interface QueryParams {
   query: string
   dbParams?: any[]
 }
 
-interface IDatabase {
-  execute(params: QueryParams)
-  txExecute(params: QueryParams[])
-}
-
-export class DatabaseManager {
-  private constructor() {}
-
-  static setting(db: 'mysql' | 'postgreSQL' | 'mongo' | 'redis') {
-    switch (db) {
-      case 'mysql':
-        return new Mysql()
-      case 'redis':
-        return new Redis()
-      default:
-        throw new Error(`${db} not exists`)
-    }
-  }
-}
-
 // use prisma
-class Mysql implements IDatabase {
+class Mysql {
   private connect(): mysql.Pool {
     return mysql.createPool({
-      host: orderConfig.getDBConfig().host,
-      user: orderConfig.getDBConfig().user,
-      password: orderConfig.getDBConfig().password,
-      database: orderConfig.getDBConfig().database,
+      host: configManager.getDBConfig().host,
+      user: configManager.getDBConfig().user,
+      password: configManager.getDBConfig().password,
+      database: configManager.getDBConfig().database,
       connectTimeout: 5000,
       connectionLimit: 30,
       waitForConnections: true,
@@ -58,7 +35,7 @@ class Mysql implements IDatabase {
     try {
       profiler.start()
       co = await this.connect().getConnection()
-      const result = await co.query(query, dbParams ?? null)
+      const [result] = await co.query(query, dbParams ?? null)
       return passed(result)
     } catch (e) {
       Logger.error(e)
@@ -97,14 +74,47 @@ class Mysql implements IDatabase {
   }
 }
 
-class Redis implements IDatabase {
-  execute(params: QueryParams) {
-    throw new Error('Method not implemented.')
+class Redis {
+  connect() {
+    return redis.createClient({ legacyMode: true })
   }
-  txExecute(params: QueryParams[]) {
-    throw new Error('Method not implemented.')
+
+  async getData(key: string) {
+    try {
+      const client = this.connect()
+      await client.connect()
+      const result = await client.v4.get(key)
+      return passed(result)
+    } catch (e) {
+      Logger.error(e)
+      return failed(e)
+    }
   }
-  connect(params: ConnectParams) {
-    throw new Error('Method not implemented.')
+
+  async delData(key: string) {
+    try {
+      const client = this.connect()
+      await client.connect()
+      const result = await client.del(key)
+      return passed(result)
+    } catch (e) {
+      Logger.error(e)
+      return failed(e)
+    }
+  }
+
+  async setData<T>(key: string, value: T) {
+    try {
+      const client = this.connect()
+      await client.connect()
+      const result = await client.set(key, JSON.stringify(value))
+      return passed(result)
+    } catch (e) {
+      Logger.error(e)
+      return failed(e)
+    }
   }
 }
+
+export const mysqlManager = new Mysql()
+export const redisManger = new Redis()

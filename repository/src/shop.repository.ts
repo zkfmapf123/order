@@ -5,7 +5,7 @@ import { failed, isPass, passed } from '../../core/src/Try'
 import { Shops } from '../../model/src/shops'
 
 class ShopRepository {
-  async retrieve(property: keyof Shops, value: any): Promise<any> {
+  async retrieve(property: keyof Shops, value: any) {
     try {
       const shops = await mysqlManager.execute({
         query: `select * from shops where ${property}= ?`,

@@ -2,7 +2,7 @@ import { alias, object, primitive, raw, serializable, serialize } from 'serializ
 import dayjs from 'dayjs'
 
 export class Shops {
-  id: number
+  @serializable id: number
   @serializable email: string
   @serializable name: string
   @serializable password: string

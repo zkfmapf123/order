@@ -12,7 +12,7 @@ redis:
 
 ## Curl
 auth-login:
-	curl -d '{"data" : {"email":"zkfmapf123@naver.com","password":"123456"}}' \
+	curl -d '{"data" : {"email":"test_10@naver.com","password":"1234516"}}' \
 	-H "Content-Type: application/json" \
 	-X POST http://localhost:3001/auth/login
 

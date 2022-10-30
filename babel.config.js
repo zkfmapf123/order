@@ -11,10 +11,10 @@ module.exports = {
         alias: {
           '^#(.+)': './src/\\1',
           'app/api-gateway': '../dist/api-gateway/src',
-          'app/auth': '../dist/auth/src',
+          'app/api-auth': '../dist/api-auth/src',
           'base/model': '../dist/model/src',
-          'base/common': '../dist/common/src',
           'base/core': '../dist/core/src',
+          'base/repository': '../dist/repository/src',
         },
         extensions: ['.ts', '.js', '.json'],
       },

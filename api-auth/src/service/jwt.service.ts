@@ -1,4 +1,4 @@
-import { failed, passed } from '../../core/src/Try'
+import { failed, passed } from '../../../core/src/Try'
 import jwt from 'jsonwebtoken'
 
 interface JwtPayloadParams {

@@ -1,6 +1,6 @@
 import * as redis from 'redis'
 import mysql from 'mysql2/promise'
-import { orderConfig } from './config'
+import { configManager } from './config'
 import _ from 'lodash'
 import { Logger } from './logger'
 import { failed, passed, Try } from './Try'
@@ -15,10 +15,10 @@ interface QueryParams {
 class Mysql {
   private connect(): mysql.Pool {
     return mysql.createPool({
-      host: orderConfig.getDBConfig().host,
-      user: orderConfig.getDBConfig().user,
-      password: orderConfig.getDBConfig().password,
-      database: orderConfig.getDBConfig().database,
+      host: configManager.getDBConfig().host,
+      user: configManager.getDBConfig().user,
+      password: configManager.getDBConfig().password,
+      database: configManager.getDBConfig().database,
       connectTimeout: 5000,
       connectionLimit: 30,
       waitForConnections: true,
@@ -35,7 +35,7 @@ class Mysql {
     try {
       profiler.start()
       co = await this.connect().getConnection()
-      const result = await co.query(query, dbParams ?? null)
+      const [result] = await co.query(query, dbParams ?? null)
       return passed(result)
     } catch (e) {
       Logger.error(e)

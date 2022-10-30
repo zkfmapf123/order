@@ -1,11 +1,11 @@
-import { jwtManager } from '../src/jwt.service'
+import { jwtManager } from '../src/service/jwt.service'
 import { redisManger } from '../../core/src/database'
 import { isPass } from '../../core/src/Try'
-import { orderConfig } from '../../core/src/config'
+import { configManager } from '../../core/src/config'
 import { pipe, map, each } from '@fxts/core'
 
 describe('jwt test', () => {
-  const jwtSecret = orderConfig.getTokenConfig().jwtSecret as string
+  const jwtSecret = configManager.getTokenConfig().jwtSecret as string
   const userInfo: [number, string] = [1, 'A']
   const [id, name] = userInfo
 
@@ -43,7 +43,7 @@ describe('jwt test', () => {
     const { accessToken, refreshToken } = JSON.parse(tryResult.result)
 
     const decodeTokenList = pipe(
-      Array.from([accessToken, refreshToken]),
+      [accessToken, refreshToken],
       map((token) => jwtManager.decode({ token, jwtSecret }))
     )
 

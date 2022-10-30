@@ -4,7 +4,7 @@ dotenv.config()
 /**
  * @todo dev or prod
  */
-class OrderConfig {
+class ConfigManager {
   getDBConfig() {
     return {
       host: process.env.DB_HOST,
@@ -19,6 +19,13 @@ class OrderConfig {
       jwtSecret: process.env.JWT_SECRET,
     }
   }
+
+  getApiPort() {
+    return {
+      gateway: process.env.API_GATEWAY,
+      auth: process.env.API_AUTH,
+    }
+  }
 }
 
-export const orderConfig = new OrderConfig()
+export const configManager = new ConfigManager()

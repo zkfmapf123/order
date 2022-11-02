@@ -43,7 +43,7 @@ export function Validation(schema: Joi.ObjectSchema) {
       // validation Error
       if (error) {
         const res = response
-        return res.json(error)
+        return res.status(400).json(error)
       }
 
       args[0] = Object.assign(args[0], {

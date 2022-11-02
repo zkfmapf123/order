@@ -78,6 +78,11 @@ export const handleLogin = async ({ email, password }: LoginParams) => {
     shopId: id,
     accessToken,
     refreshToken,
-    msg: `${isAccessExpired ? 'accessToken is reissue' : ''}, ${isRefreshExpire ? 'refreshToken is reissue' : ''}`,
+    expireToken: {
+      accessToken: isAccessExpired ? true : false,
+      refreshToken: isRefreshExpire ? true : false,
+    },
   })
 }
+
+export const handleJoin = async ({ email, password }: LoginParams) => {}

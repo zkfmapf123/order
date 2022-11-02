@@ -84,5 +84,3 @@ export const handleLogin = async ({ email, password }: LoginParams) => {
     },
   })
 }
-
-export const handleJoin = async ({ email, password }: LoginParams) => {}

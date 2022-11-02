@@ -4,8 +4,9 @@ import { Router } from 'express'
 import { Controller, NeedRequest, Validation } from 'base/core/decorators'
 import { LoginSchema } from '../schema/login.schema'
 import { JoiSchema } from '../schema/join.schema'
-import { handleJoin, handleLogin } from '../login.handler'
+import { handleLogin } from '../login.handler'
 import { Logger } from 'base/core/logger'
+import { handleJoin } from '../join.handler'
 
 const AuthParams: RouterParams = {
   LOGIN: ['POST', '/login'],

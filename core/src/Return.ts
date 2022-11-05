@@ -35,3 +35,6 @@ export const errored = <E>(status: FailStatus, error: E): ResponseErrType<E> => 
   status,
   error,
 })
+
+export const isSuccessed = <T>(success: ResponseSuccessType<T>) => success._tag === 'success'
+export const isErrored = <E>(error: ResponseErrType<E>) => error._tag === 'error'
